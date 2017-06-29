@@ -1,0 +1,4 @@
+define([
+	'./panellinkeditor/module',
+], function () {
+});

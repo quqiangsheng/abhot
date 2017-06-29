@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- For assistance related to logback-translator or configuration  -->
+<!-- files in general, please contact the logback user mailing list -->
+<!-- at http://www.qos.ch/mailman/listinfo/logback-user             -->
+<!--                                                                -->
+<!-- For professional support please see                            -->
+<!--    http://www.qos.ch/shop/products/professionalSupport         -->
+<!--                                                                -->
+<configuration>
+	<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level [%file:%line] - %msg%n</pattern>
+		</encoder>
+	</appender>
+	<appender name="logfile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>log/kairosdb.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- daily rollover -->
+			<fileNamePattern>log/kairosdb.%d.%i.log.gz</fileNamePattern>
+
+			<!-- keep 30 days' worth of history -->
+			<maxHistory>30</maxHistory>
+
+			<!-- or whenever the file size reaches 100MB -->
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>100MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+
+			<!-- Whenever startup, will run the rollover -->
+			<cleanHistoryOnStart>true</cleanHistoryOnStart>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d{MM-dd|HH:mm:ss.SSS} [%thread] %-5level [%file:%line] - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="com.mchange.v2.c3p0" level="WARN"/>
+
+	<!--<logger name="org.hbase.async.RegionClient" level="DEBUG"/>-->
+
+	<!--<logger name="org.kairosdb.core.aggregator.SumAggregator" level="DEBUG"/>
+	<logger name="org.kairosdb.datastore.cassandra.CassandraDatastore" level="DEBUG"/>-->
+
+	<!--<logger name="org.kairosdb.core.http.rest.MetricsResource" level="DEBUG"/>-->
+
+	<root level="INFO">
+		<appender-ref ref="stdout"/>
+		<appender-ref ref="logfile"/>
+	</root>
+</configuration>
