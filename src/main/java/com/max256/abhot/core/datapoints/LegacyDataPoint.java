@@ -1,12 +1,6 @@
 package com.max256.abhot.core.datapoints;
 
-/**
- Created with IntelliJ IDEA.
- User: bhawkins
- Date: 12/9/13
- Time: 12:32 PM
- To change this template use File | Settings | File Templates.
- */
+@Deprecated
 public abstract class LegacyDataPoint extends DataPointHelper
 {
 	public LegacyDataPoint(long timestamp)

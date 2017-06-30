@@ -3,12 +3,11 @@ package com.max256.abhot.core.datapoints;
 import com.max256.abhot.core.DataPoint;
 import com.max256.abhot.core.datastore.DataPointGroup;
 
+
 /**
- Created with IntelliJ IDEA.
- User: bhawkins
- Date: 8/31/13
- Time: 7:16 AM
- To change this template use File | Settings | File Templates.
+ * DataPointHelper actually is DataPoint abstract class
+ * @author fbf
+ *
  */
 public abstract class DataPointHelper implements DataPoint
 {

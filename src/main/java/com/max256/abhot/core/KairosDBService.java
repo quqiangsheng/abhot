@@ -18,6 +18,11 @@ package com.max256.abhot.core;
 
 import com.max256.abhot.core.exception.KairosDBException;
 
+/**
+ * service entrance
+ * @author fbf
+ *
+ */
 public interface KairosDBService
 {
 	public void start() throws KairosDBException;

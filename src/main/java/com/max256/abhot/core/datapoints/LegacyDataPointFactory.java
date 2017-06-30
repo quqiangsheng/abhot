@@ -11,13 +11,7 @@ import java.io.IOException;
 import com.google.gson.JsonElement;
 import com.max256.abhot.core.DataPoint;
 
-/**
- Created with IntelliJ IDEA.
- User: bhawkins
- Date: 12/9/13
- Time: 12:48 PM
- To change this template use File | Settings | File Templates.
- */
+@Deprecated
 public class LegacyDataPointFactory implements DataPointFactory
 {
 	public static final int LONG_VALUE = 0;

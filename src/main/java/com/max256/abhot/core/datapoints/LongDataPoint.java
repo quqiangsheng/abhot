@@ -8,13 +8,7 @@ import org.json.JSONWriter;
 import java.io.DataOutput;
 import java.io.IOException;
 
-/**
- Created with IntelliJ IDEA.
- User: bhawkins
- Date: 8/31/13
- Time: 7:22 AM
- To change this template use File | Settings | File Templates.
- */
+
 public class LongDataPoint extends DataPointHelper
 {
 	private long m_value;

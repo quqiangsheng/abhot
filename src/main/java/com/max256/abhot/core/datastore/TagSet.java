@@ -2,12 +2,11 @@ package com.max256.abhot.core.datastore;
 
 import java.util.Set;
 
+
 /**
- Created with IntelliJ IDEA.
- User: bhawkins
- Date: 8/28/13
- Time: 12:35 PM
- To change this template use File | Settings | File Templates.
+ *  TagSet of a group of data points
+ * @author fbf
+ *
  */
 public interface TagSet
 {

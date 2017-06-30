@@ -7,13 +7,7 @@ import com.max256.abhot.core.DataPoint;
 import java.io.DataOutput;
 import java.io.IOException;
 
-/**
- Created with IntelliJ IDEA.
- User: bhawkins
- Date: 12/9/13
- Time: 1:25 PM
- To change this template use File | Settings | File Templates.
- */
+@Deprecated
 public class LegacyLongDataPoint extends LegacyDataPoint
 {
 	private long m_value;

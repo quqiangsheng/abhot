@@ -3,13 +3,7 @@ package com.max256.abhot.core.datastore;
 import com.max256.abhot.core.http.rest.BeanValidationException;
 import com.max256.abhot.core.http.rest.json.QueryParser;
 
-/**
- Created with IntelliJ IDEA.
- User: bhawkins
- Date: 10/20/13
- Time: 6:51 AM
- To change this template use File | Settings | File Templates.
- */
+
 public enum Order
 {
 	ASC("asc"),

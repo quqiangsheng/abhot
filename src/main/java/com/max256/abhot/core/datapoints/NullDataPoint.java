@@ -1,16 +1,3 @@
-/*
- *    Licensed under the Apache License, Version 2.0 (the "License");
- *    you may not use this file except in compliance with the License.
- *    You may obtain a copy of the License at
- *
- *        http://www.apache.org/licenses/LICENSE-2.0
- *
- *    Unless required by applicable law or agreed to in writing, software
- *    distributed under the License is distributed on an "AS IS" BASIS,
- *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *    See the License for the specific language governing permissions and
- *    limitations under the License.
- */
 package com.max256.abhot.core.datapoints;
 
 import org.json.JSONException;
@@ -20,7 +7,12 @@ import com.max256.abhot.core.aggregator.DataGapsMarkingAggregator;
 import java.io.DataOutput;
 import java.io.IOException;
 
-
+/**
+ * kairosdb 1.1.3 NullDataPoint hava exist bug ,this class have not finished
+ * @author fbf
+ *
+ */
+@Deprecated
 public class NullDataPoint extends DataPointHelper
 {
 	public static final String API_TYPE = "null";
@@ -34,7 +26,7 @@ public class NullDataPoint extends DataPointHelper
 	@Override
 	public String getDataStoreDataType()
 	{
-		return "null";
+		return NullDataPointFactory.DATASTORE_TYPE;
 	}
 
 	@Override

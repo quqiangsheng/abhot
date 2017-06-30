@@ -16,6 +16,27 @@
 package com.max256.abhot.core.datastore;
 
 
+import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Preconditions.checkState;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ImmutableSortedMap;
 import com.google.common.collect.ListMultimap;
@@ -27,22 +48,14 @@ import com.max256.abhot.core.KairosDataPointFactory;
 import com.max256.abhot.core.aggregator.Aggregator;
 import com.max256.abhot.core.aggregator.LimitAggregator;
 import com.max256.abhot.core.exception.DatastoreException;
-import com.max256.abhot.core.groupby.*;
+import com.max256.abhot.core.groupby.GroupBy;
+import com.max256.abhot.core.groupby.GroupByResult;
+import com.max256.abhot.core.groupby.Grouper;
+import com.max256.abhot.core.groupby.TagGroupBy;
+import com.max256.abhot.core.groupby.TagGroupByResult;
+import com.max256.abhot.core.groupby.TypeGroupByResult;
 import com.max256.abhot.core.reporting.ThreadReporter;
 import com.max256.abhot.util.MemoryMonitor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.io.File;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.math.BigInteger;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.*;
-
-import static com.google.common.base.Preconditions.checkNotNull;
-import static com.google.common.base.Preconditions.checkState;
 
 public class KairosDatastore
 {

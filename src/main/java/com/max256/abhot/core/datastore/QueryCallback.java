@@ -1,18 +1,11 @@
 package com.max256.abhot.core.datastore;
 
-import com.max256.abhot.core.DataPoint;
-import com.max256.abhot.core.exception.DatastoreException;
-
 import java.io.IOException;
 import java.util.Map;
 
-/**
- Created with IntelliJ IDEA.
- User: bhawkins
- Date: 10/18/13
- Time: 1:02 PM
- To change this template use File | Settings | File Templates.
- */
+import com.max256.abhot.core.DataPoint;
+
+
 public interface QueryCallback
 {
 	public void addDataPoint(DataPoint datapoint) throws IOException;

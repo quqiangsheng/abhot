@@ -15,6 +15,7 @@ public interface DataPoint
 	public static final String API_LONG = "long";
 	public static final String API_DOUBLE = "double";
 
+	//default group number is number type
 	public static final String GROUP_NUMBER = "number";
 
 	public long getTimestamp();

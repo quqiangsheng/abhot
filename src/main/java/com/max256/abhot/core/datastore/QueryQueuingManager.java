@@ -15,14 +15,8 @@
  */
 package com.max256.abhot.core.datastore;
 
-import com.google.inject.Inject;
-import com.google.inject.name.Named;
-import com.max256.abhot.core.DataPoint;
-import com.max256.abhot.core.DataPointSet;
-import com.max256.abhot.core.datapoints.LongDataPoint;
-import com.max256.abhot.core.reporting.KairosMetricReporter;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import static com.google.common.base.Preconditions.checkArgument;
+import static com.max256.abhot.util.Preconditions.checkNotNullOrEmpty;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -32,8 +26,14 @@ import java.util.concurrent.Semaphore;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.ReentrantLock;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.max256.abhot.util.Preconditions.checkNotNullOrEmpty;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.google.inject.Inject;
+import com.google.inject.name.Named;
+import com.max256.abhot.core.DataPointSet;
+import com.max256.abhot.core.datapoints.LongDataPoint;
+import com.max256.abhot.core.reporting.KairosMetricReporter;
 
 public class QueryQueuingManager implements KairosMetricReporter
 {

@@ -7,6 +7,7 @@ import java.io.DataOutput;
 import java.io.IOException;
 
 /**
+ * this is a custom data type demo 
  Used to show how to create a custom data type
  Created by bhawkins on 6/27/14.
  */

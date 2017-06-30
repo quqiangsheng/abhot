@@ -7,13 +7,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
-/**
- Created with IntelliJ IDEA.
- User: bhawkins
- Date: 8/28/13
- Time: 1:19 PM
- To change this template use File | Settings | File Templates.
- */
+
 public class EmptyDataPointGroup implements DataPointGroup
 {
 	private String m_name;

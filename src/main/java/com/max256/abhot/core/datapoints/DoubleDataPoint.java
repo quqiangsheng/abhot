@@ -4,16 +4,11 @@ package com.max256.abhot.core.datapoints;
 import java.io.DataOutput;
 import java.io.IOException;
 
+import org.joda.time.DateTime;
 import org.json.JSONException;
 import org.json.JSONWriter;
 
-/**
- Created with IntelliJ IDEA.
- User: bhawkins
- Date: 8/31/13
- Time: 7:20 AM
- To change this template use File | Settings | File Templates.
- */
+
 public class DoubleDataPoint extends DataPointHelper
 {
 	private double m_value;
@@ -44,9 +39,10 @@ public class DoubleDataPoint extends DataPointHelper
 
 	@Override
 	public void writeValueToJson(JSONWriter writer) throws JSONException
-	{
-		if (m_value != m_value || Double.isInfinite(m_value))
-			throw new IllegalStateException("NaN or Infinity:" + m_value + " data point=" + this);
+	{	
+		//in kairosdb 1.1.3 is a bug : m_value != m_value??? 
+		if (Double.isInfinite(m_value))
+			throw new IllegalStateException("not a number or Infinity:" + m_value + " data point=" + this);
 
 		writer.value(m_value);
 	}
@@ -100,4 +96,12 @@ public class DoubleDataPoint extends DataPointHelper
 		long temp = Double.doubleToLongBits(m_value);
 		return (int) (temp ^ (temp >>> 32));
 	}
+
+	@Override
+	public String toString() {
+		return "DoubleDataPoint ["
+				+ "m_timestamp=" + new DateTime(m_timestamp) +
+				"m_value=" + m_value + "]";
+	}
+	
 }

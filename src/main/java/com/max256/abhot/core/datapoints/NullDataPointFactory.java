@@ -21,7 +21,12 @@ import java.io.DataOutput;
 import java.io.IOException;
 
 import static com.max256.abhot.core.DataPoint.GROUP_NUMBER;
-
+/**
+ * kairosdb 1.1.3 NullDataPointFactory hava exist bug ,this class have not finished
+ * @author fbf
+ *
+ */
+@Deprecated
 public class NullDataPointFactory implements DataPointFactory
 {
 

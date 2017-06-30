@@ -41,26 +41,35 @@ import com.max256.abhot.core.datapoints.DataPointFactory;
  To change this template use File | Settings | File Templates.
  */
 public class GuiceKairosDataPointFactory implements KairosDataPointFactory
-{
+{	
+	//logger
 	public static final Logger logger = LoggerFactory.getLogger(GuiceKairosDataPointFactory.class);
+	//include many type datapoint factory implement
 	public static final String DATAPOINTS_FACTORY_PROP_PREFIX = "kairosdb.datapoints.factory.";
 
 	private Map<String, DataPointFactory> m_factoryMapDataStore = new HashMap<String, DataPointFactory>();
 	private Map<String, DataPointFactory> m_factoryMapRegistered = new HashMap<String, DataPointFactory>();
 
 
+	/**
+	 * Constructor Injection injector and props
+	 * @param injector
+	 * @param props Specify the configuration file
+	 */
 	@Inject
 	public GuiceKairosDataPointFactory(Injector injector, Properties props)
 	{
 		Map<Key<?>, Binding<?>> bindings = injector.getAllBindings();
 
 		for (Key<?> key : bindings.keySet())
-		{
+		{	//Gets the key type. and Returns the raw (non-generic) type for this type.
 			Class<?> bindingClass = key.getTypeLiteral().getRawType();
 			if (DataPointFactory.class.isAssignableFrom(bindingClass))
-			{
+			{	//is DataPointFactory
 				DataPointFactory factory = (DataPointFactory)injector.getInstance(bindingClass);
+				//datapoint value in datastore type
 				String dsType = factory.getDataStoreType();
+				//register new datapoint type key is datapoint type
 				DataPointFactory registered = m_factoryMapDataStore.put(dsType, factory);
 				//Check if two different classes were bound to the same data type.
 				//In some cases a class may be bound in more than one place.
@@ -71,20 +80,20 @@ public class GuiceKairosDataPointFactory implements KairosDataPointFactory
 				}
 			}
 		}
-
+		//config properties
 		for (Object prop : props.keySet())
 		{
 			String key = (String)prop;
 			if (key.startsWith(DATAPOINTS_FACTORY_PROP_PREFIX))
 			{
-				String className = props.getProperty(key);
-				String type = key.substring(DATAPOINTS_FACTORY_PROP_PREFIX.length());
+				String className = props.getProperty(key);//class full name
+				String type = key.substring(DATAPOINTS_FACTORY_PROP_PREFIX.length());//
 				try
 				{
 					Class<?> factoryClass = Class.forName(className);
 
 					DataPointFactory factory = (DataPointFactory) injector.getInstance(factoryClass);
-
+					//key is config properties like kairosdb.datapoints.factory.double the last section is double
 					m_factoryMapRegistered.put(type, factory);
 				}
 				catch (ClassNotFoundException e)
@@ -98,15 +107,15 @@ public class GuiceKairosDataPointFactory implements KairosDataPointFactory
 	/**
 	 Creates DataPoint using the registered type
 	 @return
-	  @param type registered type in the configuration file
+	 @param type registered type in the configuration file like string long double etc.
 	 @param timestamp
-	 @param json
+	 @param json A class representing an element of Json
 	 */
 	@Override
 	public DataPoint createDataPoint(String type, long timestamp, JsonElement json) throws IOException
-	{
+	{	//step 1  getFactory
 		DataPointFactory factory = m_factoryMapRegistered.get(type);
-
+		//step 2  getDataPoint by factory
 		DataPoint dp = factory.getDataPoint(timestamp, json);
 
 		return (dp);
@@ -141,7 +150,7 @@ public class GuiceKairosDataPointFactory implements KairosDataPointFactory
 
 	/**
 	 Locate a DataPointFactory for the specified data point type.
-	 @param type publicly registered data type
+	 @param type publicly registered data type like string ,long,double etc.
 	 @return
 	 */
 	@Override
@@ -163,7 +172,7 @@ public class GuiceKairosDataPointFactory implements KairosDataPointFactory
 
 	@Override
 	public String getGroupType(String datastoreType)
-	{
+	{	//default implement type have 'number' and 'text' This really is for aggregation purposes
 		return getFactoryForDataStoreType(datastoreType).getGroupType();
 	}
 

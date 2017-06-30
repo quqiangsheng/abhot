@@ -16,18 +16,34 @@
 
 package com.max256.abhot.core.datastore;
 
+import java.io.DataInputStream;
+import java.io.Externalizable;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
+import java.io.RandomAccessFile;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.atomic.AtomicInteger;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.max256.abhot.core.DataPoint;
 import com.max256.abhot.core.KairosDataPointFactory;
 import com.max256.abhot.util.BufferedDataInputStream;
 import com.max256.abhot.util.BufferedDataOutputStream;
 import com.max256.abhot.util.MemoryMonitor;
 import com.max256.abhot.util.StringPool;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.io.*;
-import java.util.*;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class CachedSearchResult implements QueryCallback
 {
@@ -317,6 +333,7 @@ public class CachedSearchResult implements QueryCallback
 			m_endPosition = endPosition;
 		}
 
+		@SuppressWarnings("unused")
 		public Map<String, String> getTags()
 		{
 			return m_tags;
@@ -327,6 +344,7 @@ public class CachedSearchResult implements QueryCallback
 			m_dataPointCount ++;
 		}
 
+		@SuppressWarnings("unused")
 		public int getDataPointCount()
 		{
 			return m_dataPointCount;
