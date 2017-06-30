@@ -35,12 +35,10 @@ import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.DefaultHandler;
 import org.eclipse.jetty.server.handler.HandlerList;
 import org.eclipse.jetty.server.handler.ResourceHandler;
-import org.eclipse.jetty.server.ssl.SslSelectChannelConnector;
 import org.eclipse.jetty.servlet.DefaultServlet;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.util.security.Constraint;
 import org.eclipse.jetty.util.security.Credential;
-import org.eclipse.jetty.util.ssl.SslContextFactory;
 import org.eclipse.jetty.util.thread.ExecutorThreadPool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -153,9 +151,9 @@ public class WebServer implements KairosDBService
 				m_server = new Server(new InetSocketAddress(m_address, m_port));
 			else
 				m_server = new Server();
-
-			if (m_pool != null)
-				m_server.setThreadPool(m_pool);
+			/*jetty9.3.x will use itself default pool*/
+			/*if (m_pool != null)
+				m_server.setThreadPool(m_pool);*/
 
 			/*//Set up SSL
 			if (m_keyStorePath != null && !m_keyStorePath.isEmpty())
@@ -191,8 +189,8 @@ public class WebServer implements KairosDBService
 			ResourceHandler resourceHandler = new ResourceHandler();
 			resourceHandler.setDirectoriesListed(true);
 			resourceHandler.setWelcomeFiles(new String[]{"index.html"});
-			resourceHandler.setResourceBase(m_webRoot);
-			resourceHandler.setAliases(true);
+			/*resourceHandler.setResourceBase(m_webRoot);*/
+			/*resourceHandler.set(true);*/
 
 			HandlerList handlers = new HandlerList();
 			handlers.setHandlers(new Handler[]{servletContextHandler, resourceHandler, new DefaultHandler()});
