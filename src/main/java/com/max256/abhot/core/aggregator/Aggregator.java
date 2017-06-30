@@ -17,8 +17,6 @@ package com.max256.abhot.core.aggregator;
 
 import com.max256.abhot.core.datastore.DataPointGroup;
 
-import java.util.List;
-
 public interface Aggregator
 {
 	DataPointGroup aggregate(DataPointGroup dataPointGroup);

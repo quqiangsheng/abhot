@@ -17,6 +17,11 @@ package com.max256.abhot.core.exception;
 
 public class KairosDBException extends Exception
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public KairosDBException(String message)
 	{
 		super(message);

@@ -1,43 +1,32 @@
-/*
- *    Licensed under the Apache License, Version 2.0 (the "License");
- *    you may not use this file except in compliance with the License.
- *    You may obtain a copy of the License at
- *
- *        http://www.apache.org/licenses/LICENSE-2.0
- *
- *    Unless required by applicable law or agreed to in writing, software
- *    distributed under the License is distributed on an "AS IS" BASIS,
- *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *    See the License for the specific language governing permissions and
- *    limitations under the License.
- */
-
 package com.max256.abhot.core.aggregator;
+
+import static com.google.common.base.Preconditions.checkNotNull;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Iterator;
+import java.util.TimeZone;
+
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 import org.joda.time.Chronology;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeField;
 import org.joda.time.DateTimeZone;
 import org.joda.time.chrono.GregorianChronology;
+
 import com.max256.abhot.core.DataPoint;
 import com.max256.abhot.core.datastore.DataPointGroup;
 import com.max256.abhot.core.datastore.Sampling;
 import com.max256.abhot.core.datastore.TimeUnit;
-
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Iterator;
-import java.util.TimeZone;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 public abstract class RangeAggregator implements Aggregator, TimezoneAware
 {
 	private long m_startTime = 0L;
 	private long m_queryStartTime = 0L;
 	private long m_queryEndTime = 0L;
+	@SuppressWarnings("unused")
 	private boolean m_started = false;
 	private boolean m_alignSampling;
 	private boolean m_exhaustive;
@@ -211,6 +200,7 @@ public abstract class RangeAggregator implements Aggregator, TimezoneAware
 	private class RangeDataPointAggregator extends AggregatedDataPointGroupWrapper
 	{
 		protected RangeSubAggregator m_subAggregator;
+		@SuppressWarnings("unused")
 		protected Calendar m_calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
 		protected Iterator<DataPoint> m_dpIterator;
 		/* used for generic range computations */
@@ -305,6 +295,7 @@ public abstract class RangeAggregator implements Aggregator, TimezoneAware
 
 		 @return
 		 */
+		@SuppressWarnings("unused")
 		private long getDataPointTime()
 		{
 			return currentDataPoint.getTimestamp();

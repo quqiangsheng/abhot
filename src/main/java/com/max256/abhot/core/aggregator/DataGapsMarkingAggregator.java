@@ -13,15 +13,15 @@
  */
 package com.max256.abhot.core.aggregator;
 
+import java.util.Collections;
+import java.util.Iterator;
+
 import com.google.common.collect.ImmutableList;
 import com.google.inject.Inject;
 import com.max256.abhot.core.DataPoint;
 import com.max256.abhot.core.aggregator.annotation.AggregatorName;
 import com.max256.abhot.core.aggregator.annotation.AggregatorProperty;
 import com.max256.abhot.core.datapoints.NullDataPoint;
-
-import java.util.Collections;
-import java.util.Iterator;
 
 @AggregatorName(
         name = "gaps",

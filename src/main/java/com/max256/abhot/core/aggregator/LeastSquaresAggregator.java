@@ -11,13 +11,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-/**
- Created with IntelliJ IDEA.
- User: bhawkins
- Date: 5/29/13
- Time: 3:10 PM
- To change this template use File | Settings | File Templates.
- */
 @AggregatorName(
         name = "least_squares",
         description = "Returns a best fit line through the datapoints using the least squares algorithm.",
